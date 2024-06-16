@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Parisienne&display=swap');
+
+$fontMont: 'Montserrat', sans-serif;
+$fontParis: 'Parisienne', cursive;
+
+$colorOne: #3E6163;
+$colorTwo: #8a7049;
+$darkWhite: #d9d9d9;
+$lightWhite: #EEEAE6; 
+$selectionColor: #bbb7b7;
+$colorBtn: #2A2E3E;
+
+%icons {
+    padding: 15px;
+    color: $lightWhite;
+    border-radius: 100%;
+    margin: 15px;
+}

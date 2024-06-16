@@ -1,0 +1,96 @@
+ul li {
+    list-style: none;
+    padding: 8px;
+}
+
+
+/*       INDEX         */
+
+.bienvenido{
+    background-color: #fff;
+}
+
+.index-servicios__columna1{
+    background-color: $colorTwo;
+}
+
+.index-servicios__columna2, .index-catalogo{
+    background-color: $darkWhite;
+}
+
+.index-servicios__pic{
+    width: 100px;
+    padding: 2px;
+}
+
+.bubbles{
+    background-image: url(../img/Bubbles.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 330px;
+    overflow: hidden;
+
+    .subtitlesBubble{
+        font-family: $fontParis;
+        border-radius: 100%;
+        background-color: $colorOne;
+        width: 180px;
+        height: 180px;
+        color: $lightWhite;
+    }
+}
+
+/*-------SERVICIOS Y CATALOGO Y CONTACT---------*/
+
+
+.servicio__G, .catalogo__texto, .servicio__texto, .contacto__form{
+    background-color: $darkWhite;
+}
+
+.servicio__M{
+    background-color: $colorTwo;
+    color: $lightWhite;
+}
+
+.servicios__pic{
+    width: 180px;
+}
+
+.servicio__texto , .catalogo__texto{
+    height: 50vh;
+    font-size: 20px;
+}
+
+/*-------SOBRE MI---------*/
+
+.sobreMi{
+    padding-block: 30px;
+
+    .inner{
+        display: flex;
+        box-shadow: 13px 13px 30px #cccccc;
+    
+            &.inner>div{
+                flex: 1;
+            }
+    
+            .inner__pic img{
+                max-width: 100%;
+                padding: 1.5rem;
+            }
+    
+            .inner__text{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: left;
+                padding: 3rem;
+                &.inner__text p{
+                    font-size: 20px;
+                }
+            }
+    }
+}
+
+
+

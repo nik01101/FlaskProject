@@ -1,0 +1,31 @@
+.feet{
+    background-color: $colorOne;
+    color: $lightWhite;
+
+    .feet__subtitles{
+        font-family: $fontParis;
+        font-size: 20px;
+    }
+
+    ul li {
+        list-style: none;
+        display: inline-block;
+        padding: 10px;
+        color: black;
+    }
+}
+
+.fa-brands{
+   @extend %icons; 
+
+    &:hover{
+        background-color: $colorBtn;
+        color: $colorOne;
+    }
+}
+
+.cr{
+    color: #8b8a8a;
+    font-size: 13px;
+}
+

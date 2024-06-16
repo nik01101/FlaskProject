@@ -1,2 +1,2 @@
-# P-gina-web-Tortas-Erick-s
-Aquí es donde vamos a ir trabajando juntos en la realización de la página web y a darle forma, una vez finalicemos su desarrollo en visual studio lo trasladaremos a php para implementarle base de datos, el sistema de pago y generación de boleta
+# Projecto Flask Pagina de Ventas para Pasteleria Tortas Erick's
+Aplicativo Flask, desarrollado para ventas con funcionalidades de carrito de compras, checkout, y generacion de boletas y recibos para la pasteleria Tortas Erick's

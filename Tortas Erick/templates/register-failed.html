@@ -17,30 +17,27 @@
         <div class="banner banner-index d-flex justify-content-center flex-column align-items-center">
             <div class="padding">
                 <h1 class="title">Registrate aquí</h1>
-                <form class="inside-block" id="registration-form" action="/register" method="POST">
+                <form class="inside-block" id="registration-form">
                     <br>
                     <label for="first-name">Nombres</label>
                     <br>
-                    <input class="form-control" type="text" name="nombres" placeholder="Ingresar Nombre" required>
+                    <input class="form-control" type="text" id="first-name" placeholder="Ingresar Nombre" required>
                     <br>
                     <label for="last-name">Apellidos</label>
                     <br>
-                    <input class="form-control" type="text" name="apellidos" placeholder="Ingresar Apellido" required>
-                    <br>
-                    <label for="password">Password</label>
-                    <br>
-                    <input class="form-control" type="password" name="password" placeholder="Password" required>
+                    <input class="form-control" type="text" id="last-name" placeholder="Ingresar Apellido" required>
                     <br>
                     <label for="email">Correo Electrónico</label>
                     <br>
-                    <input class="form-control" type="email" name="email" placeholder="Ingresar Correo" required>
+                    <input class="form-control" type="email" id="email" placeholder="Ingresar Correo" required>
                     <br>
-                    <label for="phone-number" >Número Telefónico</label>
+                    <label for="phone-number">Número Telefónico</label>
                     <br>
-                    <input class="form-control" type="tel"  maxlength="9" name="telefono" placeholder="Ingresar Num. Tel." required pattern="[0-9]{9}">
+                    <input class="form-control" type="tel" id="phone-number" placeholder="Ingresar Num. Tel." required>
                     <br>
                     <button type="submit" id="register-btn" class="btn btn-primary">Registrarse</button>
-                    <br>
+                    <div  class="text-danger">El usuario no se ha podido registrar. </div>
+                    <div class="text-danger">Es probable que el correo ya se haya registrado anteriormente</div>
                 </form>
                 <br>
             </div>
@@ -50,6 +47,7 @@
                 Tus datos son importantes para tus pedidos, recuerda detallar correctamente tu información!
                 <br>
                 <br>
+            
             </div>
         </footer>
         </div>

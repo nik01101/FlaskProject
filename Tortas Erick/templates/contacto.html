@@ -9,13 +9,13 @@
     <meta name="keywords" content="Comida, Artesanal, Dulce, Salado, Postres">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/b45e53f464.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../styles/style.css">
-    <link rel="shortcut icon" href="../img/tortaserickslogo.png" type="image/x-icon">
+    <link rel="stylesheet" href="./../static/styles/style.css">
+    <link rel="shortcut icon" href="./../static/img/tortaserickslogo.png" type="image/x-icon">
 </head>
 <body>
     <header>
         <div class="banner banner-index d-flex justify-content-center flex-column align-items-center">
-            <h1 class="banner__title pt-5 tracking-in-expand"><a href="../index.html">Tortas Ericks</a></h1>
+            <h1 class="banner__title pt-5 tracking-in-expand"><a href="{{ url_for('index') }}">Tortas Ericks</a></h1>
             <h2 class="banner__subtitle tracking-in-expand"></h2>  
 
             <nav class="navbar navbar-expand-lg ">
@@ -26,11 +26,11 @@
                   <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <ul>
-                            <li class="d-inline-block menu_item" ><a class="nav-link" aria-current="page" href="../index.html">Inicio</a></li>
-                            <li class="d-inline-block menu_item">  <a class="nav-link" href="../pages/servicios.html">Servicios</a></li>
-                            <li class="d-inline-block menu_item" ><a class="nav-link" href="../pages/catalogo.html">Catálogo</a></li>
-                            <li class="d-inline-block menu_item" ><a class="nav-link" href="../pages/sobreMi.html">Sobre Mí</a></li>
-                            <li class="d-inline-block menu_item" ><a class="nav-link" href="../pages/contacto.html">Contacto</a></li>
+                            <li class="d-inline-block menu_item" ><a class="nav-link" aria-current="page" href="{{ url_for('index') }}">Inicio</a></li>
+                            <li class="d-inline-block menu_item">  <a class="nav-link" href="{{ url_for('servicios') }}">Servicios</a></li>
+                            <li class="d-inline-block menu_item" ><a class="nav-link" href="{{ url_for('tienda') }}">Tienda</a></li>
+                            <li class="d-inline-block menu_item" ><a class="nav-link" href="{{ url_for('sobremi') }}">Sobre Mí</a></li>
+                            <li class="d-inline-block menu_item" ><a class="nav-link" href="{{ url_for('contacto') }}">Contacto</a></li>
                         </ul>
                     </div>
                   </div>
@@ -43,15 +43,15 @@
         <div class="row mt-5 gap-5 gap-md-0 mt-md-auto">
             <div class="col-md-6 d-flex justify-content-center align-items-center flex-column">
                 <h2 class="subtitlesN pt-5">Contacto</h2>
-                <img src="../img/wpp.png" width="65px" class="jello-horizontal" alt="whatsappLogo"><br>
+                <img src="./../static/img/wpp.png" width="65px" class="jello-horizontal" alt="whatsappLogo"><br>
                         <a class="p-3" href="https://api.whatsapp.com/send?phone=%2B51918379805&fbclid=IwAR2E8Sd7DQqyE3RKPKf2QUaFIsBTKyZSxqNn44uueKvZ-l30vFfP_HKq1n4" target="_blank">
                             +51 918 379 805
                         </a>
-                        <img src="../img/ubi.png" alt="ubicacion" width="65px" class="jello-horizontal">
+                        <img src="./../static/img/ubi.png" alt="ubicacion" width="65px" class="jello-horizontal">
                         <p class="p-3">
                             Prolongación Huamanga 1116, La Victoria
                         </p>
-                        <img src="../img/mail.png" href="https://tortasyaizu@gmail.com" alt="mail" width="65px" class="jello-horizontal"><br>
+                        <img src="./../static/img/mail.png" href="https://tortasyaizu@gmail.com" alt="mail" width="65px" class="jello-horizontal"><br>
                         <p class="p-3"> 
                             <p>tortasyaizu@gmail.com</p>
                         </p>

@@ -16,21 +16,12 @@
     <header>
         <div class="banner banner-index d-flex justify-content-center flex-column align-items-center">
             <div class="padding">
-                <h1 class="title">Iniciar Sesion</h1>
+                <h1 class="title">Registro Exitoso</h1>
                 <br>
-                <form id="loginForm" action="/login" method="POST">
-                    <input class="form-control" type="text" name="username" placeholder="Username" required >
-                    <br>
-                    <input class="form-control" type="password" name="password" placeholder="Password" required aria-describedby="emailHelp">
-                    <div id="emailHelp" class="form-text">No tienes cuenta? <a href="{{ url_for('index') }}" class="link-primary">Registrate</a></div>
-                    <br >
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </form>
+                <h2>Felicidades ya puedes</h2> <a style="font-size: 30px; font-weight: 600;"  href="{{ url_for('home') }}" class="link-primary">Iniciar Sesion</a>
                 <br>
             </div>
         </div>
-    </header>
-        <footer>
         <div class="descrip">
                 <br>
                 Tus datos son importantes para tus pedidos, recuerda detallar correctamente tu información!

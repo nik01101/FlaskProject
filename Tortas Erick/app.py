@@ -1,5 +1,12 @@
-from flask import Flask, request, render_template, redirect, url_for, session,jsonify
+from datetime import date
+import datetime
+from flask import Flask, request, render_template, redirect, url_for, session,jsonify, Response
 import pyodbc
+import uuid
+from reportlab.pdfgen import canvas
+from io import BytesIO
+from datetime import date
+import json
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -75,7 +82,36 @@ def insert_usuario(email, password, nombres, apellidos, telefono):
         print(f"No se pudo ingresar usuario: {e}")
         return False
     
-##convertir direccion
+def insert_recibo(uuid, email, preciototal, fecha):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("EXEC InsertRecibo ?, ?, ?, ?", (uuid, email, preciototal, fecha))
+        conn.commit()
+        conn.close()
+        print("recibo ingresado correctamente")
+        return True
+    except Exception as e:
+        conn.rollback()
+        cursor.close()
+        print(f"No se pudo ingresar recibo: {e}")
+        return False
+
+def insert_recibodetalle(uuid, producto, precio, cantidad, preciototal):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("EXEC InsertRecibo ?, ?, ?, ?, ?", (uuid, producto, precio, cantidad, preciototal))
+        conn.commit()
+        conn.close()
+        print(" detalle de recibo ingresado correctamente")
+        return True
+    except Exception as e:
+        conn.rollback()
+        cursor.close()
+        print(f"No se pudo ingresar el detalle del recibo: {e}")
+        return False
+
 def insert_direccion(email, direccion, distrito, provincia):
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -170,21 +206,65 @@ def checkout():
         direccion = request.form.get('direccion')
         distrito = request.form.get('distrito')
         provincia = request.form.get('provincia')
-        email =session['username']
+        email = session.get('username')
         if 'username' in session:
             insert_direccion(email, direccion, distrito, provincia)
-        
-        # Clear the cart after checkout
-        session['cart'] = []
-
-        # Redirect to a thank you or confirmation page
-        return redirect(url_for('compra-realizada'))
+            username = session.get('username')
+            receipt_id = str(uuid.uuid4())
+            cart = session.get('cart', [])
+            carrito_str = json.dumps(cart)
+            fecha = date.today()
+            total_price = sum(item['quantity'] * float(item['product']['price']) for item in cart)
+            insert_recibo(receipt_id,username,total_price,fecha)
+            for item in cart:
+                item_name = item['product']['name']
+                item_price = item['product']['price']
+                quantity = item['quantity']
+                total =  item['quantity'] * float(item['product']['price'])
+                insert_recibodetalle(receipt_id,item_name,item_price,quantity,total)
+        return redirect(url_for('compra_realizada', receipt_id=receipt_id, username=username, total_price=total_price))
 
     return render_template('checkout.html', cart=cart, total=total, direccion=direccion, distrito=distrito, provincia=provincia)
 
 @app.route('/compra-realizada')
 def compra_realizada():
-    return render_template('compra-realizada.html')
+    receipt_id = request.args.get('receipt_id')
+    username = request.args.get('username')
+    total_price = request.args.get('total_price')
+    carrito = session.get('cart', [])
+    return render_template('compra-realizada.html', receipt_id=receipt_id, username=username, carrito=carrito, total_price=total_price)
+
+@app.route('/export_pdf', methods=['POST'])
+def export_pdf():
+    # Retrieve form data from POST request
+    username = request.form['username']
+    cart = eval(request.form['carrito'])  # Convert string representation back to list
+    total_price = float(request.form['total_price'])
+
+    # Generate PDF content
+    buffer = BytesIO()
+    pdf = canvas.Canvas(buffer)
+
+    # Title
+    pdf.drawString(100, 800, "Checkout Receipt")
+
+    # Receipt details
+    pdf.drawString(100, 750, f"Correo del cliente: {username}")
+    pdf.drawString(100, 730, "Postres comprados:")
+    y = 710
+    for item in cart:
+        pdf.drawString(120, y, f"{item['product']['name']} - Cantidad: {item['quantity']} - Precio por unidad: ${item['product']['price']}")
+        y -= 20
+    
+    pdf.drawString(100, y-20, f"Precio Total: ${total_price}")
+
+    pdf.showPage()
+    pdf.save()
+
+    buffer.seek(0)
+
+    # Set response headers for PDF download
+    return Response(buffer, mimetype='application/pdf', headers={'Content-Disposition': 'attachment;filename=checkout_receipt.pdf'})
 
 if __name__ == '__main__':
     app.run(debug=True)
